@@ -192,4 +192,4 @@ client.on("messageReactionRemove", async (reaction, user) => {
 
 
 
-client.login('NzgwNjgyNTE4MzM2MjQxNjY0.X7ypQA.vvykZ7Q4CXpSzwge8zw6A5h9OBM');
+client.login('Token');
