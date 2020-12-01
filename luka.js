@@ -1,12 +1,23 @@
+////////////////////////
+////////WELCOME////////    
+//////////////////////
+
 const Discord = require('discord.js');
+const JSON_FILE = require("jsonfile");
+const fs = require('fs');
 
 const client = new Discord.Client({ partials: ["MESSAGE", "CHANNEL", "REACTION"]});
 
 const randomPuppy = require('random-puppy');
+const Random = require('random');
+
+var stats = {};
+if(fs.existsSync('stats.json')){
+    stats = JSON_FILE.readFileSync('stats.json');
+}
 
 const prefix = '!';
 
-const fs = require('fs');
 const { Server } = require('http');
 const { disconnect } = require('process');
 
@@ -15,6 +26,10 @@ client.command = new Discord.Collection();
 const commandfiles = fs.readdirSync('./Commands/').filter(File => File.endsWith('.js'));
 var epic = 'Are you trying to post NSFW content on a SFW Channel??!! \r\n That is unacceptable, I will notify '
 var epic2 = '<@486891301615435776> And <@484750502022873096>'
+var Role1 = '782957166687551508'
+var Role2 = '782957220765761548'
+var Role3 = '783048765169860638'
+var Role4 = '783291095760896073'
 
 const bot = new Discord.Client();
 
@@ -29,19 +44,56 @@ client.once('ready', () => {
     client.user.setActivity("[!info]");
 });
 
-//client.on("guildMemberAdd", member => {
- //   let welcome = member.guild.channels.cache.find(channel => channel.name === 'welcome');
-  //  let role = member.guild.roles.cache.find(r => r.name === "Normie");
-   // member.roles.add(role);
-   // welcome.send("<@" + member.id + `> Has joined ${member.guild.name}`);
- // });
+/*client.on("guildMemberAdd", member => {
+    let welcome = member.guild.channels.cache.find(channel => channel.name === 'welcome');
+    let role = member.guild.roles.cache.find(r => r.name === "Normie");
+    member.roles.add(role);
+    welcome.send("<@" + member.id + `> Has joined ${member.guild.name}`);
+  });
 
-  //client.on("guildMemberRemove", member => {
-    //let welcome = member.guild.channels.cache.find(channel => channel.name === 'welcome');
-    //welcome.send("<@" + member.id + "> Has lefted the server :sob:");
- // });
+  client.on("guildMemberRemove", member => {
+    let welcome = member.guild.channels.cache.find(channel => channel.name === 'welcome');
+    welcome.send("<@" + member.id + "> Has lefted the server :sob:");
+ }); */
 
 client.on('message', message => {
+    if(message.author.id == client.user.id)
+        return;
+
+    if(message.guild.id in stats === false){
+        stats[message.guild.id] = {};
+    }
+    const guildstat = stats[message.guild.id];
+    if(message.author.id in guildstat === false){
+        guildstat[message.author.id] = {
+            xp: 0,
+            level: 0,
+            LAST_MESSAGE: 0
+        };
+    }
+
+    const Userstats = guildstat[message.author.id];
+
+    if(Date.now() - Userstats.LAST_MESSAGE > 30000){
+    Userstats.xp += Random.int(15, 25);
+    Userstats.LAST_MESSAGE = Date.now();
+
+    const xpToNextLvl = 5 * Math.pow(Userstats.level, 2) + 50 * Userstats.level + 100;
+    if(Userstats.xp >= xpToNextLvl){
+        Userstats.level++;
+        if(Userstats.level = 5){
+            message.guild.members.cache.get(message.author.id).roles.add(Role4);
+        }
+        Userstats.xp = Userstats.xp - xpToNextLvl;
+        message.channel.send("<@" + message.author.id + "> Has reached level " + Userstats.level);
+    }
+
+    JSON_FILE.writeFileSync('stats.json', stats);
+
+    console.log(message.author.username + 'Now has' + Userstats.xp);
+    console.log(xpToNextLvl + 'That much xp needed for the next level');
+    }
+
     if(!message.content.startsWith(prefix) || message.author.bot) return;
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
@@ -123,10 +175,6 @@ client.on('message', message => {
     }
 });
 
-var Role1 = '782957166687551508'
-var Role2 = '782957220765761548'
-var Role3 = '783048765169860638'
-
 client.on("messageReactionAdd", async (reaction, user) => {
     if(reaction.message.partial) await reaction.message.fetch();
     if(reaction.partial) await reaction.fetch();
@@ -206,6 +254,4 @@ client.on("messageReactionRemove", async (reaction, user) => {
 
 
 
-
-
-client.login('Token');
+client.login('No');
