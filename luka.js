@@ -26,7 +26,7 @@ for(const File of commandfiles){
 
 client.once('ready', () => {
     console.log('Luka is alive!');
-    client.user.setActivity("!info");
+    client.user.setActivity("[!info]");
 });
 
 //client.on("guildMemberAdd", member => {
@@ -52,7 +52,18 @@ client.on('message', message => {
     .setColor("#" + randomColor)
     .setTitle('Info')
     .setAuthor('LukaBot', 'https://cdn.discordapp.com/avatars/780682518336241664/41dc7531bfe05faf3508d0bfdab1b391')
-    .setDescription('**!ping = IP address** 👨‍💻 \r\n **!yt = sofcius youtube channel**  :flushed: \r\n **!fuckyou = Fuck you too**  :sob: \r\n **!meme = memes** \r\n **!hentai = only works on NSFW channels** \r\n **!doggo = shows a picture of a puppy** 🐶 \r\n **!kat = shows a picture of a cat** 🐱')
+    .addFields(
+        { name: '**!ping**', value: 'IP address 👨‍💻' },
+        { name: '**!yt**', value: '**sofcius youtube channel**  :flushed:' },
+        { name: '**!fuckyou**', value: 'Fuck you too' },
+        { name: '**!meme**', value: 'memes' },
+        { name: '**!hentai**', value: 'only works on NSFW channels' },
+        { name: '**!doggo**', value: 'shows a picture of a puppy 🐶' },
+        { name: '**!kat**', value: 'shows a picture of a cat 🐱' },
+        { name: '**MODS ONLY**', value: 'mod only commands are' },
+        { name: '**!giverole**', value: 'Makes an embed on which people could get roles' },
+        { name: '**!clear**', value: 'clears 100 messages' }
+	)
     .setFooter("created using unity's particle system", 'https://cdn.discordapp.com/avatars/780682518336241664/41dc7531bfe05faf3508d0bfdab1b391');
 
     if(command === 'ping'){
@@ -97,12 +108,17 @@ client.on('message', message => {
             embedMessage.react("🔷");
             embedMessage.react("🟨");
         });
+        } else {
+            message.channel.send("**Error 53: Invalid permissions**")
         }
+
     } if (command === 'clear'){
         if(message.member.roles.cache.some(r => r.name === 'Mod')){
         message.channel.bulkDelete(100).then(() => {
             message.channel.send("").then(msg => msg.delete(3000));
           });
+        } else {
+            message.channel.send("**Error 53: Invalid permissions**")
         }
     }
 });
