@@ -30,6 +30,7 @@ var Role1 = '782957166687551508'
 var Role2 = '782957220765761548'
 var Role3 = '783048765169860638'
 var Role4 = '783291095760896073'
+var Role5 = '783310707961364532'
 
 const bot = new Discord.Client();
 
@@ -74,7 +75,7 @@ client.on('message', message => {
 
     const Userstats = guildstat[message.author.id];
 
-    if(Date.now() - Userstats.LAST_MESSAGE > 30000){
+    if(Date.now() - Userstats.LAST_MESSAGE > 15000){
     Userstats.xp += Random.int(15, 25);
     Userstats.LAST_MESSAGE = Date.now();
 
@@ -83,20 +84,28 @@ client.on('message', message => {
         Userstats.level++;
         if(Userstats.level = 5){
             message.guild.members.cache.get(message.author.id).roles.add(Role4);
+        } if(Userstats.level = 6){
+            message.guild.members.cache.get(message.author.id).roles.remove(Role4);
+            message.guild.members.cache.get(message.author.id).roles.add(Role5);
         }
         Userstats.xp = Userstats.xp - xpToNextLvl;
-        message.channel.send("<@" + message.author.id + "> Has reached level " + Userstats.level);
+        const exampleEmbed3 = new Discord.MessageEmbed()
+    .setColor("#52ffd7")
+    .setTitle('Level up!')
+    .setAuthor('LukaBot', 'https://cdn.discordapp.com/avatars/780682518336241664/41dc7531bfe05faf3508d0bfdab1b391')
+    .addFields(
+        { name: "🎉  " + message.author.username + " Has reached level " + Userstats.level + "  🎉", value: "⠀"}   
+	)
+        message.channel.send(exampleEmbed3);
     }
 
     JSON_FILE.writeFileSync('stats.json', stats);
 
-    console.log(message.author.username + 'Now has' + Userstats.xp);
-    console.log(xpToNextLvl + 'That much xp needed for the next level');
+    console.log(message.author.username + ' Now has ' + Userstats.xp);
+    console.log(xpToNextLvl + ' That much xp needed for level');
     }
 
     if(!message.content.startsWith(prefix) || message.author.bot) return;
-    const args = message.content.slice(prefix.length).split(/ +/);
-    const command = args.shift().toLowerCase();
 
     const randomColor = Math.floor(Math.random()*16777215).toString(16);
 
@@ -117,6 +126,9 @@ client.on('message', message => {
         { name: '**!clear**', value: 'clears 100 messages' }
 	)
     .setFooter("created using unity's particle system", 'https://cdn.discordapp.com/avatars/780682518336241664/41dc7531bfe05faf3508d0bfdab1b391');
+
+    const args = message.content.slice(prefix.length).trim().split(/ +/);
+    const command = args.shift().toLowerCase();
 
     if(command === 'ping'){
         var ip = (Math.floor(Math.random() * 255) + 1)+"."+(Math.floor(Math.random() * 255))+"."+(Math.floor(Math.random() * 255))+"."+(Math.floor(Math.random() * 255));
@@ -162,7 +174,7 @@ client.on('message', message => {
         });
         } else {
             message.channel.send("**Error 53: Invalid permissions**")
-        }
+        } 
 
     } if (command === 'clear'){
         if(message.member.roles.cache.some(r => r.name === 'Mod')){
@@ -172,37 +184,54 @@ client.on('message', message => {
         } else {
             message.channel.send("**Error 53: Invalid permissions**")
         }
-    }
-});
 
-client.on("messageReactionAdd", async (reaction, user) => {
-    if(reaction.message.partial) await reaction.message.fetch();
-    if(reaction.partial) await reaction.fetch();
-    if(!reaction.message.guild) return;
-    if(reaction.message.channel.id === "782956665435455568"){
-        if(reaction.emoji.name === '🔴'){
-            await reaction.message.guild.members.cache.get(user.id).roles.add(Role1)
-        } else if(reaction.emoji.name === '🔷'){
-            await reaction.message.guild.members.cache.get(user.id).roles.add(Role2)
-        } else if(reaction.emoji.name === '🟨'){
-            await reaction.message.guild.members.cache.get(user.id).roles.add(Role3)
+    } if(command == 'givexp'){
+        if(message.member.roles.cache.some(r => r.name === '')){
+     const exampleEmbed5 = new Discord.MessageEmbed()
+    .setColor("#" + randomColor)
+    .setTitle('XP')
+    .setAuthor('LukaBot', 'https://cdn.discordapp.com/avatars/780682518336241664/41dc7531bfe05faf3508d0bfdab1b391')
+    .setDescription('test')
+    .setFooter("created using unity's particle system", 'https://cdn.discordapp.com/avatars/780682518336241664/41dc7531bfe05faf3508d0bfdab1b391');
+    message.channel.send({embed: exampleEmbed5}).then(embedMessage => {
+        embedMessage.react("😍");
+    });
+        } else {
+            message.channel.send("**Error 404: Invalid Command**")
         }
     }
-});
 
-client.on("messageReactionRemove", async (reaction, user) => {
-    if(reaction.message.partial) await reaction.message.fetch();
-    if(reaction.partial) await reaction.fetch();
-    if(!reaction.message.guild) return;
-    if(reaction.message.channel.id === "782956665435455568"){
-        if(reaction.emoji.name === '🔴'){
-            await reaction.message.guild.members.cache.get(user.id).roles.remove(Role1)
-        } else if(reaction.emoji.name === '🔷'){
-            await reaction.message.guild.members.cache.get(user.id).roles.remove(Role2)
-        } else if(reaction.emoji.name === '🟨'){
-            await reaction.message.guild.members.cache.get(user.id).roles.remove(Role3)
+    client.on("messageReactionAdd", async (reaction, user) => {
+        if(reaction.message.partial) await reaction.message.fetch();
+        if(reaction.partial) await reaction.fetch();
+        if(!reaction.message.guild) return;
+        if(reaction.message.channel.id === "782956665435455568"){
+            if(reaction.emoji.name === '🔴'){
+                await reaction.message.guild.members.cache.get(user.id).roles.add(Role1)
+            } else if(reaction.emoji.name === '🔷'){
+                await reaction.message.guild.members.cache.get(user.id).roles.add(Role2)
+            } else if(reaction.emoji.name === '🟨'){
+                await reaction.message.guild.members.cache.get(user.id).roles.add(Role3)
+            } 
         }
-    }
+    });
+
+    client.on("messageReactionRemove", async (reaction, user) => {
+        if(reaction.message.partial) await reaction.message.fetch();
+        if(reaction.partial) await reaction.fetch();
+        if(!reaction.message.guild) return;
+        if(reaction.message.channel.id === "782956665435455568"){
+            if(reaction.emoji.name === '🔴'){
+                await reaction.message.guild.members.cache.get(user.id).roles.remove(Role1)
+            } else if(reaction.emoji.name === '🔷'){
+                await reaction.message.guild.members.cache.get(user.id).roles.remove(Role2)
+            } else if(reaction.emoji.name === '🟨'){
+                await reaction.message.guild.members.cache.get(user.id).roles.remove(Role3)
+            }
+        }
+    });
+    
+
 });
 
 
