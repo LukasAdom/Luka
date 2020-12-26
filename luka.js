@@ -5,6 +5,7 @@
 const Discord = require('discord.js');
 const JSON_FILE = require("jsonfile");
 const fs = require('fs');
+var Long = require("long");
 
 const client = new Discord.Client({ partials: ["MESSAGE", "CHANNEL", "REACTION"]});
 
@@ -45,17 +46,28 @@ client.once('ready', () => {
     client.user.setActivity("[!info]");
 });
 
-/*client.on("guildMemberAdd", member => {
-    let welcome = member.guild.channels.cache.find(channel => channel.name === 'welcome');
+const getDefaultChannel = (guild) => {
+    if(guild.channels.cache.has(guild.id))
+      return guild.channels.cache.get(guild.id)
+  
+    const generalChannel = guild.channels.cache.find(channel => channel.name === "welcome");
+    if (generalChannel)
+      return generalChannel;
+
+    return guild.channels.cache
+     .filter(c => c.type === "text" &&
+       c.permissionsFor(guild.client.user).has("SEND_MESSAGES"))
+     .sort((a, b) => a.position - b.position ||
+       Long.fromString(a.id).sub(Long.fromString(b.id)).toNumber())
+     .first();
+  }
+
+  client.on("guildMemberAdd", member => {
+    const channel = getDefaultChannel(member.guild);
     let role = member.guild.roles.cache.find(r => r.name === "Normie");
     member.roles.add(role);
-    welcome.send("<@" + member.id + `> Has joined ${member.guild.name}`);
+    channel.send(`Welcome ${member} to the server`);
   });
-
-  client.on("guildMemberRemove", member => {
-    let welcome = member.guild.channels.cache.find(channel => channel.name === 'welcome');
-    welcome.send("<@" + member.id + "> Has lefted the server :sob:");
- }); */
 
 client.on('message', message => {
     if(message.author.id == client.user.id)
@@ -75,7 +87,7 @@ client.on('message', message => {
 
     const Userstats = guildstat[message.author.id];
 
-    if(Date.now() - Userstats.LAST_MESSAGE > 15000){
+    if(Date.now() - Userstats.LAST_MESSAGE > 5000){
     Userstats.xp += Random.int(15, 25);
     Userstats.LAST_MESSAGE = Date.now();
 
@@ -180,7 +192,13 @@ client.on('message', message => {
         if(message.member.roles.cache.some(r => r.name === 'Mod')){
         message.channel.bulkDelete(100).then(() => {
             message.channel.send("").then(msg => msg.delete(3000));
+            
+
           });
+
+          console.log("");
+                message.channel.send("You can only bulk delete messages that are under 14 days old.");
+
         } else {
             message.channel.send("**Error 53: Invalid permissions**")
         }
@@ -212,7 +230,7 @@ client.on('message', message => {
                 await reaction.message.guild.members.cache.get(user.id).roles.add(Role2)
             } else if(reaction.emoji.name === '🟨'){
                 await reaction.message.guild.members.cache.get(user.id).roles.add(Role3)
-            } 
+            }
         }
     });
 
@@ -283,4 +301,4 @@ client.on('message', message => {
 
 
 
-client.login('No');
+client.login('Nope');
