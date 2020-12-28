@@ -131,7 +131,6 @@ client.on('message', message => {
         { name: '**!fuckyou**', value: 'Fuck you too' },
         { name: '**!meme**', value: 'memes' },
         { name: '**!hentai**', value: 'only works on NSFW channels' },
-        { name: '**!doggo**', value: 'shows a picture of a puppy 🐶' },
         { name: '**!kat**', value: 'shows a picture of a cat 🐱' },
         { name: '**MODS ONLY**', value: 'mod only commands are' },
         { name: '**!giverole**', value: 'Makes an embed on which people could get roles' },
@@ -190,14 +189,11 @@ client.on('message', message => {
 
     } if (command === 'clear'){
         if(message.member.roles.cache.some(r => r.name === 'Mod')){
-        message.channel.bulkDelete(100).then(() => {
+        message.channel.bulkDelete(50).then(() => {
             message.channel.send("").then(msg => msg.delete(3000));
             
 
           });
-
-          console.log("");
-                message.channel.send("You can only bulk delete messages that are under 14 days old.");
 
         } else {
             message.channel.send("**Error 53: Invalid permissions**")
@@ -217,6 +213,12 @@ client.on('message', message => {
         } else {
             message.channel.send("**Error 404: Invalid Command**")
         }
+    }
+
+    if(command == 'blackjack'){
+        const exampleEmbedBlk = new Discord.MessageEmbed()
+        .setImage('https://i.imgur.com/wSTFkRM.png')
+        
     }
 
     client.on("messageReactionAdd", async (reaction, user) => {
@@ -301,4 +303,4 @@ client.on('message', message => {
 
 
 
-client.login('Nope');
+client.login(process.env.token);
