@@ -7,8 +7,8 @@ const JSON_FILE = require("jsonfile");
 const fs = require('fs');
 var Long = require("long");
 
-var ID = 'Nope'
-var Token = 'Nope'
+var ID = 'nope'
+var Token = 'nope'
 
 const client = new Discord.Client({ partials: ["MESSAGE", "CHANNEL", "REACTION"]});
 
@@ -127,7 +127,6 @@ client.on('message', message => {
         { name: '**!yt**', value: '**sofcius youtube channel**  :flushed:' },
         { name: '**!fuckyou**', value: 'Fuck you too' },
         { name: '**!meme**', value: 'memes' },
-        { name: '**!hentai**', value: 'only works on NSFW channels' },
         { name: '**!kat**', value: 'shows a picture of a cat 🐱' },
         { name: '**!programmerhumor**', value: 'Programmer humor 👨‍💻' },
         { name: '**!gachalifecringe**', value: 'Just 😬' },
@@ -135,7 +134,10 @@ client.on('message', message => {
         { name: '**!dank**', value: 'Dank memes' },
         { name: '**MODS ONLY**', value: 'mod only commands are' },
         { name: '**!giverole**', value: 'Makes an embed on which people could get roles' },
-        { name: '**!clear**', value: 'clears 100 messages' }
+        { name: '**!clear**', value: 'clears 100 messages' },
+        { name: '**NSFW**', value: 'Works only in NSFW channels' },
+        { name: '**!hentai**', value: 'Hentai is a genre of pornography with Anime or Manga styling' },
+        { name: '**!porn**', value: '( • )( • )ԅ(≖⌣≖ԅ)' }
 	)
     .setFooter("created using unity's particle system", 'https://cdn.discordapp.com/avatars/780682518336241664/41dc7531bfe05faf3508d0bfdab1b391');
 
@@ -159,10 +161,21 @@ client.on('message', message => {
         } else {
             let kity = ["https://i.imgur.com/z1rPBgn.jpg", "https://i.imgur.com/svBbT1Z.jpg", "https://i.imgur.com/4AiXzf8.jpg", "https://i.imgur.com/ZigXHzX.mp4", "https://i.imgur.com/ggQUrJ9.mp4", "https://i.imgur.com/U0iADj9.mp4", "https://i.imgur.com/c5puGf3.mp4", "https://i.imgur.com/NUyttbn.mp4", "https://i.imgur.com/grXqcNw.mp4", "https://i.imgur.com/hDiXRa7.jpg"]
 
-            message.channel.send(epic.concat(epic2), {files: [kity[Math.floor(Math.random() * 10 - 1)]]});
+            message.channel.send(epic.concat(epic2), {files: [kity[Math.floor(Math.random() * 9)]]});
+        } 
+
+    } else if (command == 'porn'){
+        if (message.channel.nsfw) {
+            client.command.get('Porn').execute(message, args)
+        } else {
+            let kity = ["https://i.imgur.com/z1rPBgn.jpg", "https://i.imgur.com/svBbT1Z.jpg", "https://i.imgur.com/4AiXzf8.jpg", "https://i.imgur.com/ZigXHzX.mp4", "https://i.imgur.com/ggQUrJ9.mp4", "https://i.imgur.com/U0iADj9.mp4", "https://i.imgur.com/c5puGf3.mp4", "https://i.imgur.com/NUyttbn.mp4", "https://i.imgur.com/grXqcNw.mp4", "https://i.imgur.com/hDiXRa7.jpg"]
+
+            message.channel.send(epic.concat(epic2), {files: [kity[Math.floor(Math.random() * 9)]]});
         } 
 
     } 
+
+
      if (command === 'meme') {
         client.command.get('memes').execute(message, args)
     }if (command === 'programmerhumor') {
