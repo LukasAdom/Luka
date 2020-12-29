@@ -7,6 +7,9 @@ const JSON_FILE = require("jsonfile");
 const fs = require('fs');
 var Long = require("long");
 
+var ID = 'Nope'
+var Token = 'Nope'
+
 const client = new Discord.Client({ partials: ["MESSAGE", "CHANNEL", "REACTION"]});
 
 const randomPuppy = require('random-puppy');
@@ -94,12 +97,6 @@ client.on('message', message => {
     const xpToNextLvl = 5 * Math.pow(Userstats.level, 2) + 50 * Userstats.level + 100;
     if(Userstats.xp >= xpToNextLvl){
         Userstats.level++;
-        if(Userstats.level = 5){
-            message.guild.members.cache.get(message.author.id).roles.add(Role4);
-        } if(Userstats.level = 6){
-            message.guild.members.cache.get(message.author.id).roles.remove(Role4);
-            message.guild.members.cache.get(message.author.id).roles.add(Role5);
-        }
         Userstats.xp = Userstats.xp - xpToNextLvl;
         const exampleEmbed3 = new Discord.MessageEmbed()
     .setColor("#52ffd7")
@@ -132,6 +129,10 @@ client.on('message', message => {
         { name: '**!meme**', value: 'memes' },
         { name: '**!hentai**', value: 'only works on NSFW channels' },
         { name: '**!kat**', value: 'shows a picture of a cat 🐱' },
+        { name: '**!programmerhumor**', value: 'Programmer humor 👨‍💻' },
+        { name: '**!gachalifecringe**', value: 'Just 😬' },
+        { name: '**!gocommitdie**', value: '0.69 Bobux' },
+        { name: '**!dank**', value: 'Dank memes' },
         { name: '**MODS ONLY**', value: 'mod only commands are' },
         { name: '**!giverole**', value: 'Makes an embed on which people could get roles' },
         { name: '**!clear**', value: 'clears 100 messages' }
@@ -161,14 +162,18 @@ client.on('message', message => {
             message.channel.send(epic.concat(epic2), {files: [kity[Math.floor(Math.random() * 10 - 1)]]});
         } 
 
-    } else if (command == 'doggo'){   
-        randomPuppy()
-    .then(url => {
-        message.channel.send("Here is a cute doggo <@" + message.author.id + ">", {files: [url]});
-    })
-    } if (command === 'meme') {
+    } 
+     if (command === 'meme') {
         client.command.get('memes').execute(message, args)
-    } if (command === 'kat') {
+    }if (command === 'programmerhumor') {
+        client.command.get('Pgh').execute(message, args)
+    }if (command === 'gachalifecringe') {
+        client.command.get('Glc').execute(message, args)
+    }if (command === 'gocommitdie') {
+        client.command.get('Go').execute(message, args)
+    }if (command === 'dank') {
+        client.command.get('Dank').execute(message, args)
+    }if (command === 'kat') {
         client.command.get('kats').execute(message, args)
     } if (command === 'giverole'){     
         if(message.member.roles.cache.some(r => r.name === 'Mod')){
@@ -215,46 +220,195 @@ client.on('message', message => {
         }
     }
 
+
     if(command == 'blackjack'){
-        const exampleEmbedBlk = new Discord.MessageEmbed()
-        .setImage('https://i.imgur.com/wSTFkRM.png')
-        
+        sendImage();
+        setTimeout(function(){
+        const hook = new Discord.WebhookClient(ID, Token);
+        const exampleEmbed90 = new Discord.MessageEmbed()
+	    .setTitle('Hit or stand?')
+        message.channel.send(exampleEmbed90).then(embedMessage => {
+            embedMessage.react("⏫");
+            embedMessage.react("⏬");
+        });
+        }, 850);   
     }
 
     client.on("messageReactionAdd", async (reaction, user) => {
         if(reaction.message.partial) await reaction.message.fetch();
         if(reaction.partial) await reaction.fetch();
         if(!reaction.message.guild) return;
-        if(reaction.message.channel.id === "782956665435455568"){
             if(reaction.emoji.name === '🔴'){
-                await reaction.message.guild.members.cache.get(user.id).roles.add(Role1)
+                console.log('yes');
             } else if(reaction.emoji.name === '🔷'){
-                await reaction.message.guild.members.cache.get(user.id).roles.add(Role2)
+                console.log('yes');
             } else if(reaction.emoji.name === '🟨'){
-                await reaction.message.guild.members.cache.get(user.id).roles.add(Role3)
+                console.log('yes');
+            } else if(reaction.emoji.name === '⏫'){
+                if(message.author.id == client.user.id){
+                    return;
+                }
+                sendImage2();
+            } else if(reaction.emoji.name === '⏬'){
+                console.log('STAND');
             }
-        }
     });
 
     client.on("messageReactionRemove", async (reaction, user) => {
         if(reaction.message.partial) await reaction.message.fetch();
         if(reaction.partial) await reaction.fetch();
         if(!reaction.message.guild) return;
-        if(reaction.message.channel.id === "782956665435455568"){
             if(reaction.emoji.name === '🔴'){
-                await reaction.message.guild.members.cache.get(user.id).roles.remove(Role1)
+               console.log('yes');
             } else if(reaction.emoji.name === '🔷'){
-                await reaction.message.guild.members.cache.get(user.id).roles.remove(Role2)
+                console.log('yes');
             } else if(reaction.emoji.name === '🟨'){
-                await reaction.message.guild.members.cache.get(user.id).roles.remove(Role3)
+                console.log('yes');
             }
-        }
     });
-    
+
+    var NUMB = 0;
+    var NUMB2 = 0;
+    var NUMB3 = 0;
+    var NumbRL = 0;
+    var NumbRL2 = 0;
+
+    async function sendImage() {
+        let embeds = [];
+        const hook = new Discord.WebhookClient('Nope', "Nope");
+        let img = [
+            'https://i.imgur.com/uLsuVLp.png',
+            'https://i.imgur.com/LZ85ZYw.png',
+            'https://i.imgur.com/vBEXmTS.png',
+            'https://i.imgur.com/NbmP0Z6.png',
+            'https://i.imgur.com/Cawm8Bv.png',
+            'https://i.imgur.com/upVlB1D.png',
+            'https://i.imgur.com/g2L5lZk.png',
+            'https://i.imgur.com/Adpq7C0.png',
+            'https://i.imgur.com/xyMoquC.png',
+            'https://i.imgur.com/qKg9ODP.png'
+          ];
+
+          let idk = Math.floor(Math.random() * 8)
+          let idk2 = Math.floor(Math.random() * 8)
+
+          // Don't mind all of these else if statement //
+
+          embeds.push(new Discord.MessageEmbed()
+          .setTitle('Bot')
+          .setImage(img[9])
+          .setTimestamp()
+          .setFooter('Pulled time:'));
+          NumbRL = Math.floor(Math.random() * (10 - 2) + 2);
+
+          embeds.push(new Discord.MessageEmbed()
+          .setTitle('Bot')
+          .setImage(img[9])
+          .setTimestamp()
+          .setFooter('Pulled time:'));
+          NumbRL2 = Math.floor(Math.random() * (10 - 2) + 2);
+
+        embeds.push(new Discord.MessageEmbed()
+                .setTitle('Player')
+                .setImage(img[idk])
+                .setTimestamp()
+                .setFooter('Pulled time:'));
+                if(idk == 0){
+                    NUMB = 2;
+                } else if(idk === 1){
+                    NUMB = 3;
+                } else if(idk === 2){
+                    NUMB = 4;
+                } else if(idk === 3){
+                    NUMB = 5;
+                } else if(idk === 4){
+                    NUMB = 6;
+                } else if(idk === 5){
+                    NUMB = 7;
+                } else if(idk === 6){
+                    NUMB = 8;
+                } else if(idk === 7){
+                    NUMB = 9;
+                }  else if(idk === 8){
+                    NUMB = 10;
+                }
+                embeds.push(new Discord.MessageEmbed()
+                .setTitle('Player')
+                .setImage(img[idk2])
+                .setTimestamp()
+                .setFooter('Pulled time:'));
+                if(idk2 === 0){
+                    NUMB2 = 2;
+                } else if(idk2 === 1){
+                    NUMB2 = 3;
+                } else if(idk2 === 2){
+                    NUMB2 = 4;
+                } else if(idk2 === 3){
+                    NUMB2 = 5;
+                } else if(idk2 === 4){
+                    NUMB2 = 6;
+                } else if(idk2 === 5){
+                    NUMB2 = 7;
+                } else if(idk2 === 6){
+                    NUMB2 = 8;
+                } else if(idk2 === 7){
+                    NUMB2 = 9;
+                }  else if(idk2 === 8){
+                    NUMB2 = 10;
+                }
+                console.log(NumbRL);
+                console.log(NumbRL2);
+                console.log(NumbRL + NumbRL2);
+                console.log(NUMB + NUMB2);
+                hook.send({embeds: embeds});
+      }
 
 });
 
+function sendImage2() {
+    const hook = new Discord.WebhookClient(ID, Token);
+        let img = [
+            'https://i.imgur.com/uLsuVLp.png',
+            'https://i.imgur.com/LZ85ZYw.png',
+            'https://i.imgur.com/vBEXmTS.png',
+            'https://i.imgur.com/NbmP0Z6.png',
+            'https://i.imgur.com/Cawm8Bv.png',
+            'https://i.imgur.com/upVlB1D.png',
+            'https://i.imgur.com/g2L5lZk.png',
+            'https://i.imgur.com/Adpq7C0.png',
+            'https://i.imgur.com/xyMoquC.png',
+            'https://i.imgur.com/qKg9ODP.png'
+          ];
 
+          let idk3 = Math.floor(Math.random() * 8)
+    const exampleEmbed91 = new Discord.MessageEmbed()
+    .setTitle('Player')
+    .setImage(img[idk3])
+    .setTimestamp()
+    .setFooter('Pulled time:');
+
+    if(idk3 === 0){
+        NUMB3 = 2;
+    } else if(idk3 === 1){
+        NUMB3 = 3;
+    } else if(idk3 === 2){
+        NUMB3 = 4;
+    } else if(idk3 === 3){
+        NUMB3 = 5;
+    } else if(idk3 === 4){
+        NUMB3 = 6;
+    } else if(idk3 === 5){
+        NUMB3 = 7;
+    } else if(idk3 === 6){
+        NUMB3 = 8;
+    } else if(idk3 === 7){
+        NUMB3 = 9;
+    }  else if(idk3 === 8){
+        NUMB3 = 10;
+    }
+    console.log(NUMB3);
+    hook.send({embeds: exampleEmbed91});
+}
 
 
 
