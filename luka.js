@@ -72,7 +72,7 @@ const getDefaultChannel = (guild) => {
     channel.send(`Sveikas ${member} atvykes į :night_with_stars: Sofčius 𝕋𝕆𝕎ℕ!`);
   });
 
-client.on('message', message => {
+    client.on('message', message => {
     if(message.author.id == client.user.id)
         return;
 
@@ -128,6 +128,7 @@ client.on('message', message => {
     .setAuthor('LukaBot', 'https://cdn.discordapp.com/avatars/780682518336241664/41dc7531bfe05faf3508d0bfdab1b391')
     .addFields(
         { name: '**?updatelog**', value: 'Update Log' },
+        { name: '**?sourcecode**', value: "LukaBot's Source code" },
         { name: '**?ping**', value: 'IP address 👨‍💻' },
         { name: '**?yt**', value: '**sofcius youtube channel**  :flushed:' },
         { name: '**?fuckyou**', value: 'Fuck you too' },
@@ -182,7 +183,8 @@ client.on('message', message => {
         { name: 'Removed ?50/50', value: 'Reason: Not working' },
         { name: 'Added ?mildlyinfuriating', value: '⠀' },
         { name: 'Added ?crappydesign', value: '⠀' },
-        { name: 'Removed ?hmmm', value: 'Reason: Not working' }
+        { name: 'Removed ?hmmm', value: 'Reason: Not working' },
+        { name: 'Added ?sourcecode', value: '⠀' }
        
 	)
     .setFooter("created using unity's particle system", 'https://cdn.discordapp.com/avatars/780682518336241664/41dc7531bfe05faf3508d0bfdab1b391');
@@ -200,6 +202,8 @@ client.on('message', message => {
         message.channel.send(exampleEmbed);
     }  else if (command == 'updatelog'){
         message.channel.send(exampleEmbedLOG);
+    }  else if (command == 'sourcecode'){
+        message.channel.send("https://github.com/LukasAdom/Luka");
     } else if (command == 'fuckyou'){
         message.channel.send("<@" + message.author.id + "> Fuck you");
         message.author.send("https://cdn.discordapp.com/emojis/587026903584735243.gif?v=1")
@@ -474,7 +478,7 @@ client.on('message', message => {
 
     async function sendImage() {
         let embeds = [];
-        const hook = new Discord.WebhookClient(ID, Token);
+        const hook = new Discord.WebhookClient('Nope', "Nope");
         let img = [
             'https://i.imgur.com/uLsuVLp.png',
             'https://i.imgur.com/LZ85ZYw.png',
