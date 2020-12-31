@@ -7,8 +7,8 @@ const JSON_FILE = require("jsonfile");
 const fs = require('fs');
 var Long = require("long");
 
-var ID = 'Nope'
-var Token = 'Nope'
+var ID = 'nope'
+var Token = 'nope'
 
 const client = new Discord.Client({ partials: ["MESSAGE", "CHANNEL", "REACTION"]});
 
@@ -30,11 +30,10 @@ client.command = new Discord.Collection();
 const commandfiles = fs.readdirSync('./Commands/').filter(File => File.endsWith('.js'));
 var epic = 'Are you trying to post NSFW content on a SFW Channel??!! \r\n That is unacceptable, I will notify '
 var epic2 = '<@486891301615435776> And <@484750502022873096>'
-var Role1 = '782957166687551508'
-var Role2 = '782957220765761548'
-var Role3 = '783048765169860638'
-var Role4 = '783291095760896073'
-var Role5 = '783310707961364532'
+var Bitch = "789449013317074954" 
+var AnimeRole = "789450509382582287"
+var programmerrole = "780691032550670357"
+var PHM = "793941506893414420"
 
 const bot = new Discord.Client();
 
@@ -100,16 +99,43 @@ const getDefaultChannel = (guild) => {
         if(Userstats.level == 5){
             const role = member.guild.roles.cache.find(role => role.name === "『➗』𝟐𝐦𝐦");
             member.roles.add(role);
+        } if(Userstats.level == 6){
+            const role = member.guild.roles.cache.find(role => role.name === "『➗』𝟕.𝟐𝟗𝐜𝐦");
+            member.roles.add(role);
+        } if(Userstats.level == 7){
+            const role = member.guild.roles.cache.find(role => role.name === "『➗』𝟖.𝟐𝐜𝐦");
+            member.roles.add(role);
+        } if(Userstats.level == 10){
+            const role = member.guild.roles.cache.find(role => role.name === "『🎮』 𝐄𝐩𝐢𝐜 𝐆𝐚𝐦𝐞𝐫");
+            member.roles.add(role);
+        } if(Userstats.level == 15){
+            const role = member.guild.roles.cache.find(role => role.name === "『🧟』𝐙̌𝐚𝐥𝐠𝐢𝐫𝐢𝐧𝐢𝐬");
+            member.roles.add(role);
+        } if(Userstats.level == 20){
+            const role = member.guild.roles.cache.find(role => role.name === "『🚋』𝐑𝐚𝐣𝐨𝐧𝐢𝐧𝐢𝐬");
+            member.roles.add(role);
+        } if(Userstats.level == 25){
+            const role = member.guild.roles.cache.find(role => role.name === "『👄』𝐆𝐞𝐫𝐤𝐥𝐢𝐧𝐢𝐬");
+            member.roles.add(role);
+        } if(Userstats.level == 30){
+            const role = member.guild.roles.cache.find(role => role.name === "『💣』𝐃𝐮𝐦𝐁𝐮𝐦𝐢𝐧𝐢𝐬");
+            member.roles.add(role);
+        } if(Userstats.level == 35){
+            const role = member.guild.roles.cache.find(role => role.name === "『🍺』𝐁𝐚𝐜𝐡𝐢𝐨𝐧𝐢𝐧𝐢𝐬");
+            member.roles.add(role);
         }
+
         Userstats.xp = Userstats.xp - xpToNextLvl;
+        const randomColor = Math.floor(Math.random()*16777215).toString(16);
+        var color2 = "#" + randomColor
         const exampleEmbed3 = new Discord.MessageEmbed()
-    .setColor("#52ffd7")
+    .setColor(color2)
     .setTitle('Level up!')
     .setAuthor('LukaBot', 'https://cdn.discordapp.com/avatars/780682518336241664/41dc7531bfe05faf3508d0bfdab1b391')
     .addFields(
         { name: "🎉  " + message.author.username + " Has reached level " + Userstats.level + "  🎉", value: "⠀"}   
 	)
-        message.channel.send(exampleEmbed3);
+
     }
 
     JSON_FILE.writeFileSync('stats.json', stats);
@@ -127,38 +153,50 @@ const getDefaultChannel = (guild) => {
     .setTitle('Info')
     .setAuthor('LukaBot', 'https://cdn.discordapp.com/avatars/780682518336241664/41dc7531bfe05faf3508d0bfdab1b391')
     .addFields(
-        { name: '**?updatelog**', value: 'Update Log' },
-        { name: '**?sourcecode**', value: "LukaBot's Source code" },
-        { name: '**?ping**', value: 'IP address 👨‍💻' },
+        { name: '**?updatelog** (?upl)', value: 'Update Log' },
+        { name: '**?sourcecode** (?sc)', value: "LukaBot's Source code" },
+        { name: '**?ping (?pg)**', value: 'IP address 👨‍💻' },
         { name: '**?yt**', value: '**sofcius youtube channel**  :flushed:' },
         { name: '**?fuckyou**', value: 'Fuck you too' },
-        { name: '**?meme**', value: 'memes :flushed:' },
-        { name: '**?kat**', value: 'shows a picture of a cat 🐱' },
-        { name: '**?programmerhumor**', value: 'Programmer humor 👨‍💻' },
-        { name: '**?mildlyinfuriating**', value: '😠' },
-        { name: '**?crappydesign**', value: '<:kerbe:780681151109922826>' },
-        { name: '**?hmmm**', value: '<:TPose:780681141979971594>' },
-        { name: '**?gachalifecringe**', value: 'Just 😬' },
-        { name: '**?gocommitdie**', value: '0.69 Bobux <:Christian_Server:780681146861355070>' },
+        { name: '**?meme (?mem)**', value: 'memes :flushed:' },
+        { name: '**?kat (?ka)**', value: 'shows a picture of a cat 🐱' },
+        { name: '**?programmerhumor (?pgh)**', value: 'Programmer humor 👨‍💻' },
+        { name: '**?softwaregore (?sfg)**', value: 'ℸ ̣ ⍑ᒷ  𝙹リ ℸ ̣ 𝙹!¡ ᒲᔑ↸ᒷ' },
+        { name: '**?mildlyinfuriating (?min)**', value: '😠' },
+        { name: '**?boneappletea (?bat)**', value: 'it when you when go i where when up' },
+        { name: '**?crappydesign (?crapd)**', value: '<:kerbe:780681151109922826>' },
+        { name: '**?gachalifecringe (?glc)**', value: 'Just 😬' },
+        { name: '**?gocommitdie (?gcd)**', value: '0.69 Bobux <:Christian_Server:780681146861355070>' },
         { name: '**?dank**', value: 'Dank memes' },
+        { name: '**?earth (?eth)**', value: 'SFW pictures of earth porn' },
+        { name: '**?wholesome (?wms)**', value: 'Luv u 💖' },
+        { name: '**?cursed (?cur)**', value: '😱' },
         { name: '**MODS ONLY**', value: 'mod only commands are' },
         { name: '**?giverole**', value: 'Makes an embed on which people could get roles 🧰' },
         { name: '**?clear**', value: 'clears 100 messages 🧰' },
+	)
+    .setFooter("created using unity's particle system", 'https://cdn.discordapp.com/avatars/780682518336241664/41dc7531bfe05faf3508d0bfdab1b391');
+
+    const exampleEmbedNSFW = new Discord.MessageEmbed()
+    .setColor("#" + randomColor)
+    .setTitle('Info')
+    .setAuthor('LukaBot', 'https://cdn.discordapp.com/avatars/780682518336241664/41dc7531bfe05faf3508d0bfdab1b391')
+    .addFields(
         { name: '**NSFW**', value: 'Works only in NSFW channels' },
-        { name: '**?hentai**', value: 'Hentai is a genre of pornography with Anime or Manga styling <:KawaiiPepe:780681144470470678>' },
-        { name: '**?cumhentai**', value: 'Welcome to the cum zone, only cum inside anime girls <:KawaiiPepe:780681144470470678>' },
-        { name: '**?gifhentai**', value: 'Gif' },
-        { name: '**?memehentai**', value: 'memes AND HENTAI :flushed:' },
-        { name: '**?beasthentai**', value: 'BEAST MODE' },
-        { name: '**?mghentai**', value: 'Monster girl hentai :flushed:' },
-        { name: '**?porn**', value: '( • )( • )ԅ(≖⌣≖ԅ)' },
-        { name: '**?anal**', value: 'Anal 😉' },
-        { name: '**?cum**', value: 'Coom' },
-        { name: '**?twerk**', value: 'Twek' },
-        { name: '**?tittydrop**', value: 'Boing Boing' },
-        { name: '**?boobs**', value: 'Boobies <:XDflag:780681143548772392>' },
-        { name: '**?cosplay**', value: 'Nice' },
-        { name: '**?pussy**', value: ':cat2:' },
+        { name: '**?hentai (?hen)**', value: 'Hentai is a genre of pornography with Anime or Manga styling  <:KawaiiPepe:780681144470470678>' },
+        { name: '**?gifhentai (?gh)**', value: 'Gif' },
+        { name: '**?cumhentai (?ch)**', value: 'Welcome to the cum zone, only cum inside anime girls  <:KawaiiPepe:780681144470470678>' },
+        { name: '**?memehentai (?memeh)**', value: 'memes AND HENTAI :flushed:' },
+        { name: '**?beasthentai (?bh)**', value: 'BEAST MODE' },
+        { name: '**?mghentai (?mgh)**', value: 'Monster girl hentai :flushed:' },
+        { name: '**?porn (?pr)**', value: '( • )( • )ԅ(≖⌣≖ԅ)' },
+        { name: '**?anal (?an)**', value: 'Anal 😉' },
+        { name: '**?cum (?cu)**', value: 'Coom' },
+        { name: '**?twerk (?tw)**', value: 'Twek' },
+        { name: '**?tittydrop (?ttd)**', value: 'Boing Boing' },
+        { name: '**?boobs (?bo)**', value: 'Boobies <:XDflag:780681143548772392>' },
+        { name: '**?cosplay (?cos)**', value: 'Nice' },
+        { name: '**?pussy (?pus)**', value: ':cat2:' },
 	)
     .setFooter("created using unity's particle system", 'https://cdn.discordapp.com/avatars/780682518336241664/41dc7531bfe05faf3508d0bfdab1b391');
 
@@ -167,24 +205,12 @@ const getDefaultChannel = (guild) => {
     .setTitle('Update Log')
     .setAuthor('LukaBot', 'https://cdn.discordapp.com/avatars/780682518336241664/41dc7531bfe05faf3508d0bfdab1b391')
     .addFields(
-        { name: 'Added ?updatelog', value: '⠀' },
-        { name: 'Added ?cumhentai', value: '⠀' },
-        { name: 'Added ?gifhentai', value: '⠀' },
-        { name: 'Added ?memehentai', value: '⠀' },
-        { name: 'Added ?beasthentai', value: '⠀' },
-        { name: 'Added ?mghentai', value: '⠀' },
-        { name: 'Added ?anal', value: '⠀' },
-        { name: 'Added ?cum', value: '⠀' },
-        { name: 'Added ?twerk', value: '⠀' },
-        { name: 'Added ?tittydrop', value: '⠀' },
-        { name: 'Added ?boobs', value: '⠀' },
-        { name: 'Added ?cosplay', value: '⠀' },
-        { name: 'Added ?pussy', value: '⠀' },
-        { name: 'Removed ?50/50', value: 'Reason: Not working' },
-        { name: 'Added ?mildlyinfuriating', value: '⠀' },
-        { name: 'Added ?crappydesign', value: '⠀' },
-        { name: 'Removed ?hmmm', value: 'Reason: Not working' },
-        { name: 'Added ?sourcecode', value: '⠀' }
+        { name: 'Update 12/31/2020', value: '⠀' },
+        { name: '⠀', value: '⠀' },
+        { name: 'Added ?wholesome (?wms)', value: '⠀' },
+        { name: 'Added ?cursed (?cur)', value: '⠀' },
+        { name: 'Added ?boneappletea (?bat)', value: '⠀' },
+        
        
 	)
     .setFooter("created using unity's particle system", 'https://cdn.discordapp.com/avatars/780682518336241664/41dc7531bfe05faf3508d0bfdab1b391');
@@ -198,17 +224,35 @@ const getDefaultChannel = (guild) => {
         message.channel.send(ip);
     } else if (command == 'yt'){
         message.channel.send('https://www.youtube.com/channel/UCNa1lyfkwFi8yl1PDEBjIbg');
+    }  else if (command == 'pg'){
+        var ip = (Math.floor(Math.random() * 255) + 1)+"."+(Math.floor(Math.random() * 255))+"."+(Math.floor(Math.random() * 255))+"."+(Math.floor(Math.random() * 255));
+        message.channel.send(ip);
     } else if (command == 'info'){
         message.channel.send(exampleEmbed);
+    }   else if (command == 'info2'){
+        message.channel.send(exampleEmbedNSFW);
     }  else if (command == 'updatelog'){
-        message.channel.send(exampleEmbedLOG);
+        message.channel.send(exampleEmbedLOG)
+    }  else if (command == 'upl'){
+        message.channel.send(exampleEmbedLOG)
     }  else if (command == 'sourcecode'){
+        message.channel.send("https://github.com/LukasAdom/Luka");
+    }   else if (command == 'sc'){
         message.channel.send("https://github.com/LukasAdom/Luka");
     } else if (command == 'fuckyou'){
         message.channel.send("<@" + message.author.id + "> Fuck you");
         message.author.send("https://cdn.discordapp.com/emojis/587026903584735243.gif?v=1")
         message.author.send("ℸ ̣ ⍑ᒷ  𝙹リ ℸ ̣ 𝙹!¡ ᒲᔑ↸ᒷ ╎ℸ ̣   ℸ ̣ 𝙹 ∷ᒷᔑ↸.  ℸ ̣ ⍑ᒷ  ∴ᔑᓭ ʖ∷𝙹⚍⊣⍑ℸ ̣  ᓭℸ ̣ ∷ᔑ╎⊣⍑ℸ ̣  ⎓∷𝙹ᒲ ℸ ̣ ⍑ᒷ 𝙹ꖎ↸")
     } else if (command == 'hentai'){
+        if (message.channel.nsfw) {
+            client.command.get('hentai').execute(message, args)
+        } else {
+            let kity = ["https://i.imgur.com/z1rPBgn.jpg", "https://i.imgur.com/svBbT1Z.jpg", "https://i.imgur.com/4AiXzf8.jpg", "https://i.imgur.com/ZigXHzX.mp4", "https://i.imgur.com/ggQUrJ9.mp4", "https://i.imgur.com/U0iADj9.mp4", "https://i.imgur.com/c5puGf3.mp4", "https://i.imgur.com/NUyttbn.mp4", "https://i.imgur.com/grXqcNw.mp4", "https://i.imgur.com/hDiXRa7.jpg"]
+
+            message.channel.send(epic.concat(epic2), {files: [kity[Math.floor(Math.random() * 9)]]});
+        } 
+
+    } else if (command == 'hen'){
         if (message.channel.nsfw) {
             client.command.get('hentai').execute(message, args)
         } else {
@@ -228,7 +272,29 @@ const getDefaultChannel = (guild) => {
 
     } 
 
+     else if (command == 'pr'){
+        if (message.channel.nsfw) {
+            client.command.get('Porn').execute(message, args)
+        } else {
+            let kity = ["https://i.imgur.com/z1rPBgn.jpg", "https://i.imgur.com/svBbT1Z.jpg", "https://i.imgur.com/4AiXzf8.jpg", "https://i.imgur.com/ZigXHzX.mp4", "https://i.imgur.com/ggQUrJ9.mp4", "https://i.imgur.com/U0iADj9.mp4", "https://i.imgur.com/c5puGf3.mp4", "https://i.imgur.com/NUyttbn.mp4", "https://i.imgur.com/grXqcNw.mp4", "https://i.imgur.com/hDiXRa7.jpg"]
+
+            message.channel.send(epic.concat(epic2), {files: [kity[Math.floor(Math.random() * 9)]]});
+        } 
+
+    } 
+    
     else if (command == 'cumhentai'){
+        if (message.channel.nsfw) {
+            client.command.get('HentaiCum').execute(message, args)
+        } else {
+            let kity = ["https://i.imgur.com/z1rPBgn.jpg", "https://i.imgur.com/svBbT1Z.jpg", "https://i.imgur.com/4AiXzf8.jpg", "https://i.imgur.com/ZigXHzX.mp4", "https://i.imgur.com/ggQUrJ9.mp4", "https://i.imgur.com/U0iADj9.mp4", "https://i.imgur.com/c5puGf3.mp4", "https://i.imgur.com/NUyttbn.mp4", "https://i.imgur.com/grXqcNw.mp4", "https://i.imgur.com/hDiXRa7.jpg"]
+
+            message.channel.send(epic.concat(epic2), {files: [kity[Math.floor(Math.random() * 9)]]});
+        } 
+
+    } 
+
+    else if (command == 'ch'){
         if (message.channel.nsfw) {
             client.command.get('HentaiCum').execute(message, args)
         } else {
@@ -250,7 +316,29 @@ const getDefaultChannel = (guild) => {
 
     } 
 
+    else if (command == 'gh'){
+        if (message.channel.nsfw) {
+            client.command.get('GifHentai').execute(message, args)
+        } else {
+            let kity = ["https://i.imgur.com/z1rPBgn.jpg", "https://i.imgur.com/svBbT1Z.jpg", "https://i.imgur.com/4AiXzf8.jpg", "https://i.imgur.com/ZigXHzX.mp4", "https://i.imgur.com/ggQUrJ9.mp4", "https://i.imgur.com/U0iADj9.mp4", "https://i.imgur.com/c5puGf3.mp4", "https://i.imgur.com/NUyttbn.mp4", "https://i.imgur.com/grXqcNw.mp4", "https://i.imgur.com/hDiXRa7.jpg"]
+
+            message.channel.send(epic.concat(epic2), {files: [kity[Math.floor(Math.random() * 9)]]});
+        } 
+
+    } 
+
     else if (command == 'memehentai'){
+        if (message.channel.nsfw) {
+            client.command.get('MemeHentai').execute(message, args)
+        } else {
+            let kity = ["https://i.imgur.com/z1rPBgn.jpg", "https://i.imgur.com/svBbT1Z.jpg", "https://i.imgur.com/4AiXzf8.jpg", "https://i.imgur.com/ZigXHzX.mp4", "https://i.imgur.com/ggQUrJ9.mp4", "https://i.imgur.com/U0iADj9.mp4", "https://i.imgur.com/c5puGf3.mp4", "https://i.imgur.com/NUyttbn.mp4", "https://i.imgur.com/grXqcNw.mp4", "https://i.imgur.com/hDiXRa7.jpg"]
+
+            message.channel.send(epic.concat(epic2), {files: [kity[Math.floor(Math.random() * 9)]]});
+        } 
+
+    } 
+
+    else if (command == 'memeh'){
         if (message.channel.nsfw) {
             client.command.get('MemeHentai').execute(message, args)
         } else {
@@ -272,7 +360,29 @@ const getDefaultChannel = (guild) => {
 
     } 
 
+    else if (command == 'bh'){
+        if (message.channel.nsfw) {
+            client.command.get('BeastHentai').execute(message, args)
+        } else {
+            let kity = ["https://i.imgur.com/z1rPBgn.jpg", "https://i.imgur.com/svBbT1Z.jpg", "https://i.imgur.com/4AiXzf8.jpg", "https://i.imgur.com/ZigXHzX.mp4", "https://i.imgur.com/ggQUrJ9.mp4", "https://i.imgur.com/U0iADj9.mp4", "https://i.imgur.com/c5puGf3.mp4", "https://i.imgur.com/NUyttbn.mp4", "https://i.imgur.com/grXqcNw.mp4", "https://i.imgur.com/hDiXRa7.jpg"]
+
+            message.channel.send(epic.concat(epic2), {files: [kity[Math.floor(Math.random() * 9)]]});
+        } 
+
+    } 
+
     else if (command == 'mghentai'){
+        if (message.channel.nsfw) {
+            client.command.get('MonHentai').execute(message, args)
+        } else {
+            let kity = ["https://i.imgur.com/z1rPBgn.jpg", "https://i.imgur.com/svBbT1Z.jpg", "https://i.imgur.com/4AiXzf8.jpg", "https://i.imgur.com/ZigXHzX.mp4", "https://i.imgur.com/ggQUrJ9.mp4", "https://i.imgur.com/U0iADj9.mp4", "https://i.imgur.com/c5puGf3.mp4", "https://i.imgur.com/NUyttbn.mp4", "https://i.imgur.com/grXqcNw.mp4", "https://i.imgur.com/hDiXRa7.jpg"]
+
+            message.channel.send(epic.concat(epic2), {files: [kity[Math.floor(Math.random() * 9)]]});
+        } 
+
+    } 
+
+    else if (command == 'mgh'){
         if (message.channel.nsfw) {
             client.command.get('MonHentai').execute(message, args)
         } else {
@@ -294,8 +404,29 @@ const getDefaultChannel = (guild) => {
 
     } 
 
+    else if (command == 'an'){
+        if (message.channel.nsfw) {
+            client.command.get('Anal').execute(message, args)
+        } else {
+            let kity = ["https://i.imgur.com/z1rPBgn.jpg", "https://i.imgur.com/svBbT1Z.jpg", "https://i.imgur.com/4AiXzf8.jpg", "https://i.imgur.com/ZigXHzX.mp4", "https://i.imgur.com/ggQUrJ9.mp4", "https://i.imgur.com/U0iADj9.mp4", "https://i.imgur.com/c5puGf3.mp4", "https://i.imgur.com/NUyttbn.mp4", "https://i.imgur.com/grXqcNw.mp4", "https://i.imgur.com/hDiXRa7.jpg"]
+
+            message.channel.send(epic.concat(epic2), {files: [kity[Math.floor(Math.random() * 9)]]});
+        } 
+
+    } 
 
     else if (command == 'cum'){
+        if (message.channel.nsfw) {
+            client.command.get('Cum').execute(message, args)
+        } else {
+            let kity = ["https://i.imgur.com/z1rPBgn.jpg", "https://i.imgur.com/svBbT1Z.jpg", "https://i.imgur.com/4AiXzf8.jpg", "https://i.imgur.com/ZigXHzX.mp4", "https://i.imgur.com/ggQUrJ9.mp4", "https://i.imgur.com/U0iADj9.mp4", "https://i.imgur.com/c5puGf3.mp4", "https://i.imgur.com/NUyttbn.mp4", "https://i.imgur.com/grXqcNw.mp4", "https://i.imgur.com/hDiXRa7.jpg"]
+
+            message.channel.send(epic.concat(epic2), {files: [kity[Math.floor(Math.random() * 9)]]});
+        } 
+
+    } 
+
+    else if (command == 'cu'){
         if (message.channel.nsfw) {
             client.command.get('Cum').execute(message, args)
         } else {
@@ -317,7 +448,29 @@ const getDefaultChannel = (guild) => {
 
     } 
 
+    else if (command == 'tw'){
+        if (message.channel.nsfw) {
+            client.command.get('Twerk').execute(message, args)
+        } else {
+            let kity = ["https://i.imgur.com/z1rPBgn.jpg", "https://i.imgur.com/svBbT1Z.jpg", "https://i.imgur.com/4AiXzf8.jpg", "https://i.imgur.com/ZigXHzX.mp4", "https://i.imgur.com/ggQUrJ9.mp4", "https://i.imgur.com/U0iADj9.mp4", "https://i.imgur.com/c5puGf3.mp4", "https://i.imgur.com/NUyttbn.mp4", "https://i.imgur.com/grXqcNw.mp4", "https://i.imgur.com/hDiXRa7.jpg"]
+
+            message.channel.send(epic.concat(epic2), {files: [kity[Math.floor(Math.random() * 9)]]});
+        } 
+
+    } 
+
     else if (command == 'tittydrop'){
+        if (message.channel.nsfw) {
+            client.command.get('TittyDrop').execute(message, args)
+        } else {
+            let kity = ["https://i.imgur.com/z1rPBgn.jpg", "https://i.imgur.com/svBbT1Z.jpg", "https://i.imgur.com/4AiXzf8.jpg", "https://i.imgur.com/ZigXHzX.mp4", "https://i.imgur.com/ggQUrJ9.mp4", "https://i.imgur.com/U0iADj9.mp4", "https://i.imgur.com/c5puGf3.mp4", "https://i.imgur.com/NUyttbn.mp4", "https://i.imgur.com/grXqcNw.mp4", "https://i.imgur.com/hDiXRa7.jpg"]
+
+            message.channel.send(epic.concat(epic2), {files: [kity[Math.floor(Math.random() * 9)]]});
+        } 
+
+    } 
+
+    else if (command == 'ttd'){
         if (message.channel.nsfw) {
             client.command.get('TittyDrop').execute(message, args)
         } else {
@@ -339,7 +492,29 @@ const getDefaultChannel = (guild) => {
 
     } 
 
+    else if (command == 'bo'){
+        if (message.channel.nsfw) {
+            client.command.get('Boobs').execute(message, args)
+        } else {
+            let kity = ["https://i.imgur.com/z1rPBgn.jpg", "https://i.imgur.com/svBbT1Z.jpg", "https://i.imgur.com/4AiXzf8.jpg", "https://i.imgur.com/ZigXHzX.mp4", "https://i.imgur.com/ggQUrJ9.mp4", "https://i.imgur.com/U0iADj9.mp4", "https://i.imgur.com/c5puGf3.mp4", "https://i.imgur.com/NUyttbn.mp4", "https://i.imgur.com/grXqcNw.mp4", "https://i.imgur.com/hDiXRa7.jpg"]
+
+            message.channel.send(epic.concat(epic2), {files: [kity[Math.floor(Math.random() * 9)]]});
+        } 
+
+    } 
+
     else if (command == 'cosplay'){
+        if (message.channel.nsfw) {
+            client.command.get('Cosplay').execute(message, args)
+        } else {
+            let kity = ["https://i.imgur.com/z1rPBgn.jpg", "https://i.imgur.com/svBbT1Z.jpg", "https://i.imgur.com/4AiXzf8.jpg", "https://i.imgur.com/ZigXHzX.mp4", "https://i.imgur.com/ggQUrJ9.mp4", "https://i.imgur.com/U0iADj9.mp4", "https://i.imgur.com/c5puGf3.mp4", "https://i.imgur.com/NUyttbn.mp4", "https://i.imgur.com/grXqcNw.mp4", "https://i.imgur.com/hDiXRa7.jpg"]
+
+            message.channel.send(epic.concat(epic2), {files: [kity[Math.floor(Math.random() * 9)]]});
+        } 
+
+    } 
+
+    else if (command == 'cos'){
         if (message.channel.nsfw) {
             client.command.get('Cosplay').execute(message, args)
         } else {
@@ -361,6 +536,16 @@ const getDefaultChannel = (guild) => {
 
     } 
 
+    else if (command == 'pus'){
+        if (message.channel.nsfw) {
+            client.command.get('Pussy').execute(message, args)
+        } else {
+            let kity = ["https://i.imgur.com/z1rPBgn.jpg", "https://i.imgur.com/svBbT1Z.jpg", "https://i.imgur.com/4AiXzf8.jpg", "https://i.imgur.com/ZigXHzX.mp4", "https://i.imgur.com/ggQUrJ9.mp4", "https://i.imgur.com/U0iADj9.mp4", "https://i.imgur.com/c5puGf3.mp4", "https://i.imgur.com/NUyttbn.mp4", "https://i.imgur.com/grXqcNw.mp4", "https://i.imgur.com/hDiXRa7.jpg"]
+
+            message.channel.send(epic.concat(epic2), {files: [kity[Math.floor(Math.random() * 9)]]});
+        } 
+
+    } 
 
      if (command === 'meme') {
         client.command.get('memes').execute(message, args)
@@ -368,28 +553,74 @@ const getDefaultChannel = (guild) => {
         client.command.get('Pgh').execute(message, args)
     }if (command === 'gachalifecringe') {
         client.command.get('Glc').execute(message, args)
+    }if (command === 'cursed') {
+        client.command.get('Cursed').execute(message, args)
+    }if (command === 'cur') {
+        client.command.get('Cursed').execute(message, args)
     }if (command === 'gocommitdie') {
         client.command.get('Go').execute(message, args)
+    }if (command === 'softwaregore') {
+        client.command.get('SFG').execute(message, args)
     }if (command === 'dank') {
         client.command.get('Dank').execute(message, args)
+    }if (command === 'earth') {
+        client.command.get('Earth').execute(message, args)
     }if (command === 'mildlyinfuriating') {
         client.command.get('Mildlyinfuriating').execute(message, args)
     }if (command === 'crappydesign') {
         client.command.get('Crappydesign').execute(message, args)
     }if (command === 'kat') {
         client.command.get('kats').execute(message, args)
+    }   if (command === 'mem') {
+        client.command.get('memes').execute(message, args)
+    }if (command === 'pgh') {
+        client.command.get('Pgh').execute(message, args)
+    }if (command === 'glc') {
+        client.command.get('Glc').execute(message, args)
+    }if (command === 'gcd') {
+        client.command.get('Go').execute(message, args)
+    }if (command === 'sfg') {
+        client.command.get('SFG').execute(message, args)
+    }if (command === 'dnk') {
+        client.command.get('Dank').execute(message, args)
+    }if (command === 'eth') {
+        client.command.get('Earth').execute(message, args)
+    }if (command === 'min') {
+        client.command.get('Mildlyinfuriating').execute(message, args)
+    }if (command === 'wholesome') {
+        client.command.get('Wholesome').execute(message, args)
+    }if (command === 'wms') {
+        client.command.get('Wholesome').execute(message, args)
+    }if (command === 'crapd') {
+        client.command.get('Crappydesign').execute(message, args)
+    }if (command === 'boneappletea') {
+        client.command.get('BAT').execute(message, args)
+    }if (command === 'bat') {
+        client.command.get('BAT').execute(message, args)
+    }if (command === 'ka') {
+        client.command.get('kats').execute(message, args)
     } if (command === 'giverole'){     
         if(message.member.roles.cache.some(r => r.name === '『🧰』 𝐌𝐨𝐝𝐚𝐬')){
+        const bat = message.guild.roles.cache.find(role => role.name == "『🍑』𝐁𝐢𝐭𝐜𝐡");
+        const bat2 = message.guild.roles.cache.find(role => role.name == "『💖』𝐀𝐧𝐢𝐦𝐞");
+        const bat3 = message.guild.roles.cache.find(role => role.name == "『💻』 𝐏𝐫𝐨𝐠𝐫𝐚𝐦𝐮𝐨𝐭𝐨𝐣𝐚𝐬");
         const exampleEmbed2 = new Discord.MessageEmbed()
         .setColor("#" + randomColor)
         .setTitle('Roles')
         .setAuthor('LukaBot', 'https://cdn.discordapp.com/avatars/780682518336241664/41dc7531bfe05faf3508d0bfdab1b391')
-        .setDescription('test')
+        .addFields(
+            
+            { name: `🍑  = 『🍑』𝐁𝐢𝐭𝐜𝐡`, value: '⠀' },
+            { name: `💖  = 『💖』𝐀𝐧𝐢𝐦𝐞`, value: '⠀' },
+            { name: `💻  = 『💻』𝐏𝐫𝐨𝐠𝐫𝐚𝐦𝐮𝐨𝐭𝐨𝐣𝐚𝐬`, value: '⠀' },
+            { name: `🍆  = 『🍆』𝐏𝐨𝐫𝐧𝐇𝐮𝐛 𝐌𝐚𝐬𝐭𝐞𝐫`, value: '⠀' }
+        )
         .setFooter("created using unity's particle system", 'https://cdn.discordapp.com/avatars/780682518336241664/41dc7531bfe05faf3508d0bfdab1b391');
         message.channel.send({embed: exampleEmbed2}).then(embedMessage => {
-            embedMessage.react("👄");
-            embedMessage.react("🧟");
-            embedMessage.react("🍺");
+            embedMessage.react("🍑");
+            embedMessage.react("💖");
+            embedMessage.react("💻");
+            embedMessage.react("🍆");
         });
         } else {
             message.channel.send("**Error 53: Invalid permissions**")
@@ -442,15 +673,16 @@ const getDefaultChannel = (guild) => {
         if(reaction.message.partial) await reaction.message.fetch();
         if(reaction.partial) await reaction.fetch();
         if(!reaction.message.guild) return;
-            if(reaction.emoji.name === '👄'){
-                const role = message.guild.roles.cache.find(role => role.name === "『👄』𝐆𝐞𝐫𝐤𝐥𝐢𝐧𝐢𝐬");
-                message.roles.add(role);
-            } else if(reaction.emoji.name === '🧟'){
-                const role = message.guild.roles.cache.find(role => role.name === "『🧟』𝐙̌𝐚𝐥𝐠𝐢𝐫𝐢𝐧𝐢𝐬");
-                message.roles.add(role);
-            } else if(reaction.emoji.name === '🍺'){
-                const role = message.guild.roles.cache.find(role => role.name === "『🍺』𝐁𝐚𝐜𝐡𝐢𝐨𝐧𝐢𝐧𝐢𝐬");
-                message.roles.add(role);
+            if(reaction.emoji.name === '🍑'){
+                await reaction.message.guild.members.cache.get(user.id).roles.add(Bitch)
+            } else if(reaction.emoji.name === '💖'){
+                await reaction.message.guild.members.cache.get(user.id).roles.add(AnimeRole)
+            } else if(reaction.emoji.name === '💻'){
+                await reaction.message.guild.members.cache.get(user.id).roles.add(programmerrole)
+            }  else if(reaction.emoji.name === '🍆'){
+                await reaction.message.guild.members.cache.get(user.id).roles.add(PHM)
+            }   else if(reaction.emoji.name === '🅰️'){
+                
             } 
     });
 
@@ -458,15 +690,14 @@ const getDefaultChannel = (guild) => {
         if(reaction.message.partial) await reaction.message.fetch();
         if(reaction.partial) await reaction.fetch();
         if(!reaction.message.guild) return;
-        if(reaction.emoji.name === '👄'){
-            const role = message.guild.roles.cache.find(role => role.name === "『👄』𝐆𝐞𝐫𝐤𝐥𝐢𝐧𝐢𝐬");
-            message.roles.remove(role);
-        } else if(reaction.emoji.name === '🧟'){
-            const role = message.guild.roles.cache.find(role => role.name === "『🧟』𝐙̌𝐚𝐥𝐠𝐢𝐫𝐢𝐧𝐢𝐬");
-            message.roles.remove(role);
-        } else if(reaction.emoji.name === '🍺'){
-            const role = message.guild.roles.cache.find(role => role.name === "『🍺』𝐁𝐚𝐜𝐡𝐢𝐨𝐧𝐢𝐧𝐢𝐬");
-            message.roles.remove(role);
+        if(reaction.emoji.name === '🍑'){
+            await reaction.message.guild.members.cache.get(user.id).roles.remove(Bitch)
+        } else if(reaction.emoji.name === '💖'){
+            await reaction.message.guild.members.cache.get(user.id).roles.remove(AnimeRole)
+        } else if(reaction.emoji.name === '💻'){
+            await reaction.message.guild.members.cache.get(user.id).roles.remove(programmerrole)
+        } else if(reaction.emoji.name === '🍆'){
+            await reaction.message.guild.members.cache.get(user.id).roles.remove(PHM)
         } 
     });
 
@@ -478,7 +709,7 @@ const getDefaultChannel = (guild) => {
 
     async function sendImage() {
         let embeds = [];
-        const hook = new Discord.WebhookClient('Nope', "Nope");
+        const hook = new Discord.WebhookClient('nope', "nope");
         let img = [
             'https://i.imgur.com/uLsuVLp.png',
             'https://i.imgur.com/LZ85ZYw.png',
