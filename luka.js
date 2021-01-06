@@ -7,8 +7,8 @@ const JSON_FILE = require("jsonfile");
 const fs = require('fs');
 var Long = require("long");
 
-var ID = 'nope'
-var Token = 'nope'
+var ID = "yesyes"
+var Token = "yes"
 
 const client = new Discord.Client({ partials: ["MESSAGE", "CHANNEL", "REACTION"]});
 
@@ -35,7 +35,6 @@ var AnimeRole = "789450509382582287"
 var programmerrole = "780691032550670357"
 var PHM = "793941506893414420"
 
-const bot = new Discord.Client();
 
 for(const File of commandfiles){
     const command = require(`./Commands/${File}`);
@@ -155,6 +154,7 @@ const getDefaultChannel = (guild) => {
     .addFields(
         { name: '**?updatelog** (?upl)', value: 'Update Log' },
         { name: '**?sourcecode** (?sc)', value: "LukaBot's Source code" },
+        { name: '**?info2**', value: 'Next page' },
         { name: '**?ping (?pg)**', value: 'IP address 👨‍💻' },
         { name: '**?yt**', value: '**sofcius youtube channel**  :flushed:' },
         { name: '**?fuckyou**', value: 'Fuck you too' },
@@ -171,11 +171,22 @@ const getDefaultChannel = (guild) => {
         { name: '**?earth (?eth)**', value: 'SFW pictures of earth porn' },
         { name: '**?wholesome (?wms)**', value: 'Luv u 💖' },
         { name: '**?cursed (?cur)**', value: '😱' },
-        { name: '**MODS ONLY**', value: 'mod only commands are' },
-        { name: '**?giverole**', value: 'Makes an embed on which people could get roles 🧰' },
-        { name: '**?clear**', value: 'clears 100 messages 🧰' },
+        { name: '**?tihi (?th)**', value: 'Thanks I hate it' },
+        { name: '**?mememan (?mm)**', value: 'git rekt u nub' },
 	)
     .setFooter("created using unity's particle system", 'https://cdn.discordapp.com/avatars/780682518336241664/41dc7531bfe05faf3508d0bfdab1b391');
+
+
+    const exampleEmbedBruh = new Discord.MessageEmbed()
+    .setColor("#" + randomColor)
+    .setTitle('Info')
+    .setAuthor('LukaBot', 'https://cdn.discordapp.com/avatars/780682518336241664/41dc7531bfe05faf3508d0bfdab1b391')
+    .addFields(
+        { name: '**?pewdiepiesub (?psub)**', value: 'pewdiepie submissions' },
+	)
+    .setFooter("created using unity's particle system", 'https://cdn.discordapp.com/avatars/780682518336241664/41dc7531bfe05faf3508d0bfdab1b391');
+
+
 
     const exampleEmbedNSFW = new Discord.MessageEmbed()
     .setColor("#" + randomColor)
@@ -200,16 +211,29 @@ const getDefaultChannel = (guild) => {
 	)
     .setFooter("created using unity's particle system", 'https://cdn.discordapp.com/avatars/780682518336241664/41dc7531bfe05faf3508d0bfdab1b391');
 
+    const exampleEmbedAdmin = new Discord.MessageEmbed()
+    .setColor("#" + randomColor)
+    .setTitle('Info')
+    .setAuthor('LukaBot', 'https://cdn.discordapp.com/avatars/780682518336241664/41dc7531bfe05faf3508d0bfdab1b391')
+    .addFields(
+        { name: '**MODS ONLY**', value: 'mod only commands are' },
+        { name: '**?giverole**', value: 'Makes an embed on which people could get roles 🧰' },
+        { name: '**?clear**', value: 'clears 100 messages 🧰' },
+	)
+    .setFooter("created using unity's particle system", 'https://cdn.discordapp.com/avatars/780682518336241664/41dc7531bfe05faf3508d0bfdab1b391');
+
+
     const exampleEmbedLOG = new Discord.MessageEmbed()
     .setColor("#" + randomColor)
     .setTitle('Update Log')
     .setAuthor('LukaBot', 'https://cdn.discordapp.com/avatars/780682518336241664/41dc7531bfe05faf3508d0bfdab1b391')
     .addFields(
-        { name: 'Update 12/31/2020', value: '⠀' },
+        { name: 'Update 1/3/2021', value: '⠀' },
         { name: '⠀', value: '⠀' },
-        { name: 'Added ?wholesome (?wms)', value: '⠀' },
-        { name: 'Added ?cursed (?cur)', value: '⠀' },
-        { name: 'Added ?boneappletea (?bat)', value: '⠀' },
+        { name: 'Added pewdiepiesub', value: '⠀' },
+        { name: 'removed askreddit', value: 'Reason: not working' },
+        
+        
         
        
 	)
@@ -228,9 +252,14 @@ const getDefaultChannel = (guild) => {
         var ip = (Math.floor(Math.random() * 255) + 1)+"."+(Math.floor(Math.random() * 255))+"."+(Math.floor(Math.random() * 255))+"."+(Math.floor(Math.random() * 255));
         message.channel.send(ip);
     } else if (command == 'info'){
-        message.channel.send(exampleEmbed);
-    }   else if (command == 'info2'){
+        message.channel.send(exampleEmbed)
+    } 
+    else if (command == 'infonsfw'){
         message.channel.send(exampleEmbedNSFW);
+    }     else if (command == 'infoadmin'){
+        message.channel.send(exampleEmbedAdmin);
+    }     else if (command == 'info2'){
+        message.channel.send(exampleEmbedBruh);
     }  else if (command == 'updatelog'){
         message.channel.send(exampleEmbedLOG)
     }  else if (command == 'upl'){
@@ -551,6 +580,10 @@ const getDefaultChannel = (guild) => {
         client.command.get('memes').execute(message, args)
     }if (command === 'programmerhumor') {
         client.command.get('Pgh').execute(message, args)
+    }if (command === 'tihi') {
+        client.command.get('TIHI').execute(message, args)
+    }if (command === 'th') {
+        client.command.get('TIHI').execute(message, args)
     }if (command === 'gachalifecringe') {
         client.command.get('Glc').execute(message, args)
     }if (command === 'cursed') {
@@ -595,8 +628,16 @@ const getDefaultChannel = (guild) => {
         client.command.get('Crappydesign').execute(message, args)
     }if (command === 'boneappletea') {
         client.command.get('BAT').execute(message, args)
+    }if (command === 'pewdiepiesub') {
+        client.command.get('PSub').execute(message, args)
+    }if (command === 'psub') {
+        client.command.get('PSub').execute(message, args)
     }if (command === 'bat') {
         client.command.get('BAT').execute(message, args)
+    }if (command === 'mememan') {
+        client.command.get('MemeMan').execute(message, args)
+    }if (command === 'mm') {
+        client.command.get('MemeMan').execute(message, args)
     }if (command === 'ka') {
         client.command.get('kats').execute(message, args)
     } if (command === 'giverole'){     
@@ -681,9 +722,7 @@ const getDefaultChannel = (guild) => {
                 await reaction.message.guild.members.cache.get(user.id).roles.add(programmerrole)
             }  else if(reaction.emoji.name === '🍆'){
                 await reaction.message.guild.members.cache.get(user.id).roles.add(PHM)
-            }   else if(reaction.emoji.name === '🅰️'){
-                
-            } 
+            }
     });
 
     client.on("messageReactionRemove", async (reaction, user) => {
@@ -709,7 +748,7 @@ const getDefaultChannel = (guild) => {
 
     async function sendImage() {
         let embeds = [];
-        const hook = new Discord.WebhookClient('nope', "nope");
+        const hook = new Discord.WebhookClient("Idk why I didn't use an ID", "Idk why I didn't use an Token");
         let img = [
             'https://i.imgur.com/uLsuVLp.png',
             'https://i.imgur.com/LZ85ZYw.png',
