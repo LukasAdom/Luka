@@ -894,7 +894,8 @@ function sendImage2() {
 
 
 
-
+// Don't mind this shit code (which I cleaned up) //
+// Here the secret code ?bruh //
 
 
 
